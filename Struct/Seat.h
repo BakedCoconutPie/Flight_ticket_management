@@ -7,7 +7,6 @@
 
 #define MAX_SEATS 100
 
-// Define structure for a seat
 struct Seat {
     int seatNumber;
     int flightNumber;
