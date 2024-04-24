@@ -67,7 +67,7 @@ void readBuyerFile(buyer_detail Buyer[], int *n) {
     fclose(fp);
 }
 
-int main () {
+void BuyerMenu() {
     buyer_detail Buyer[MAX_LENGTH];
     int n = 0;
     int option = 0;
@@ -118,6 +118,9 @@ int main () {
                 printf("Chon khong hop le, vui long chon lai.\n");
         }
     } while (option != 6);
+}
 
+int main() {
+    BuyerMenu();
     return 0;
 }
