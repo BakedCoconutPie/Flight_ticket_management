@@ -2,7 +2,6 @@
 #define BUYER_H
 
 #define MAX_LENGTH 50
-#define BUYER_FILE_PATH "C:\\Users\\ACER\\Documents\\buyer\\buyer.txt"
 
 typedef struct {
     char CCCD[MAX_LENGTH];
