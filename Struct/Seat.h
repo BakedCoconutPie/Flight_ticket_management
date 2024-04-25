@@ -20,5 +20,7 @@ void addSeat(struct Seat seats[], int *numSeats);
 void deleteSeat(struct Seat seats[], int *numSeats);
 void editSeat(struct Seat seats[], int numSeats);
 void displaySeats(struct Seat seats[], int numSeats);
+int MenuSeat(struct Seat seats[], int *numSeats);
+
 
 #endif 
