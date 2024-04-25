@@ -13,7 +13,7 @@ struct Seat {
 struct Seat seats[MAX_SEATS];
 int numSeats = 0;
 
-void saveToFile() {
+void saveToSeat() {
     FILE *file = fopen("seats.txt", "w");
     if (file == NULL) {
         printf("Khong mo duoc file de ghi.\n");
@@ -27,7 +27,7 @@ void saveToFile() {
     fclose(file);
 }
 
-void loadFromFile() {
+void loadFromSeat() {
     FILE *file = fopen("seats.txt", "r");
     if (file == NULL) {
         printf("File khong ton tai hoac khong mo duoc.\n");
