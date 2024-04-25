@@ -122,7 +122,7 @@ void displaySeats() {
     printf("====================\n");
 }
 
-int main() {
+int MenuSeat() {
     int choice;
 
     loadFromFile(); 
