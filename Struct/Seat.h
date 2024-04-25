@@ -14,8 +14,8 @@ struct Seat {
 };
 
 // Function prototypes for seat management
-void saveToFile(struct Seat seats[], int numSeats);
-void loadFromFile(struct Seat seats[], int *numSeats);
+void saveToSeat(struct Seat seats[], int numSeats);
+void loadFromSeat(struct Seat seats[], int *numSeats);
 void addSeat(struct Seat seats[], int *numSeats);
 void deleteSeat(struct Seat seats[], int *numSeats);
 void editSeat(struct Seat seats[], int numSeats);
