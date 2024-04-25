@@ -65,6 +65,48 @@ void hien_thi_danh_sach_ve(struct QuanLyVeMayBay quan_ly_ve) {
     }
 }
 
+void ghi_ve_vao_file(struct QuanLyVeMayBay quan_ly_ve, const char* ten_file) {
+    FILE* file = fopen(ten_file, "w");
+    if (file == NULL) {
+        printf("Khong the mo file de ghi.\n");
+        return;
+    }
+
+    fprintf(file, "%d\n", quan_ly_ve.so_luong_ve);
+    for (int i = 0; i < quan_ly_ve.so_luong_ve; i++) {
+        fprintf(file, "%s\n", quan_ly_ve.danh_sach_ve[i].ten_nguoi_dat);
+        fprintf(file, "%s\n", quan_ly_ve.danh_sach_ve[i].thoi_gian_dat);
+        fprintf(file, "%s\n", quan_ly_ve.danh_sach_ve[i].gia_ve);
+        fprintf(file, "%s\n", quan_ly_ve.danh_sach_ve[i].hang_ve);
+        fprintf(file, "%s\n", quan_ly_ve.danh_sach_ve[i].so_may_bay);
+        fprintf(file, "%s\n", quan_ly_ve.danh_sach_ve[i].so_ghe);
+    }
+
+    fclose(file);
+    printf("Da ghi danh sach ve vao file.\n");
+}
+
+void doc_ve_tu_file(struct QuanLyVeMayBay *quan_ly_ve, const char* ten_file) {
+    FILE* file = fopen(ten_file, "r");
+    if (file == NULL) {
+        printf("Khong the mo file de doc.\n");
+        return;
+    }
+
+    fscanf(file, "%d", &quan_ly_ve->so_luong_ve);
+    for (int i = 0; i < quan_ly_ve->so_luong_ve; i++) {
+        fscanf(file, "%s", quan_ly_ve->danh_sach_ve[i].ten_nguoi_dat);
+        fscanf(file, "%s", quan_ly_ve->danh_sach_ve[i].thoi_gian_dat);
+        fscanf(file, "%s", quan_ly_ve->danh_sach_ve[i].gia_ve);
+        fscanf(file, "%s", quan_ly_ve->danh_sach_ve[i].hang_ve);
+        fscanf(file, "%s", quan_ly_ve->danh_sach_ve[i].so_may_bay);
+        fscanf(file, "%s", quan_ly_ve->danh_sach_ve[i].so_ghe);
+    }
+
+    fclose(file);
+    printf("Da doc danh sach ve tu file.\n");
+}
+
 void TicketsMenu() {
     struct QuanLyVeMayBay quan_ly_ve = {{}, 0};
     int choice;
@@ -73,17 +115,19 @@ void TicketsMenu() {
         printf("1. Them ve may bay\n");
         printf("2. Xoa ve may bay\n");
         printf("3. Hien thi danh sach ve may bay\n");
-        printf("4. Thoat\n");
+        printf("4. Ghi danh sach ve vao file\n");
+        printf("5. Doc danh sach ve tu file\n");
+        printf("6. Thoat\n");
         printf("Chon chuc nang: ");
         scanf("%d", &choice);
-        getchar(); // Loại bỏ ký tự newline từ bước trước
+        getchar(); 
         switch(choice) {
             case 1: {
                 struct VeMayBay ve;
                 printf("Nhap thong tin ve may bay:\n");
                 printf("Ten nguoi dat: ");
                 fgets(ve.ten_nguoi_dat, sizeof(ve.ten_nguoi_dat), stdin);
-                ve.ten_nguoi_dat[strcspn(ve.ten_nguoi_dat, "\n")] = '\0'; // Loại bỏ ký tự newline
+                ve.ten_nguoi_dat[strcspn(ve.ten_nguoi_dat, "\n")] = '\0'; 
                 printf("Thoi gian dat: ");
                 fgets(ve.thoi_gian_dat, sizeof(ve.thoi_gian_dat), stdin);
                 ve.thoi_gian_dat[strcspn(ve.thoi_gian_dat, "\n")] = '\0';
@@ -114,12 +158,18 @@ void TicketsMenu() {
                 hien_thi_danh_sach_ve(quan_ly_ve);
                 break;
             case 4:
+                ghi_ve_vao_file(quan_ly_ve, "danh_sach_ve.txt");
+                break;
+            case 5:
+                doc_ve_tu_file(&quan_ly_ve, "danh_sach_ve.txt");
+                break;
+            case 6:
                 printf("Thoat chuong trinh.\n");
                 break;
             default:
                 printf("Chon khong hop le, vui long chon lai.\n");
         }
-    } while(choice != 4);
+    } while(choice != 6);
 }
 
 int main() {
